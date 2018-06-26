@@ -233,8 +233,7 @@ namespace Tangzx.ABSystem
 
         public virtual void Dispose()
         {
-            UnloadBundle();
-
+           
             var e = deps.GetEnumerator();
             while (e.MoveNext())
             {
@@ -252,6 +251,10 @@ namespace Tangzx.ABSystem
 
             if (onUnloaded != null)
                 onUnloaded(this);
+            if (bundle != null)
+            {
+                bundle.Unload(true);
+            }
         }
 
         public bool isReady
